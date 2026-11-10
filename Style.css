@@ -1,0 +1,150 @@
+/* تنظیمات پایه و متغیرهای رنگی برند بارین */
+:root {
+    --primary-dark: #064E3B;   /* سبز زمردی تیره */
+    --primary-light: #0D5C46;  /* سبز زمردی روشن */
+    --accent-gold: #D97706;    /* طلایی گندمی */
+    --accent-light: #FBBF24;   /* طلایی روشن */
+    --bg-color: #F9FAFB;       /* خاکستری خیلی ملایم برای پس‌زمینه */
+    --text-color: #1F2937;     /* متن تیره خوانا */
+    --white: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    direction: rtl;
+    text-align: right;
+    line-height: 1.6;
+}
+
+/* کانتینر عمومی */
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* هدر سایت */
+.header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+    color: var(--white);
+    padding: 25px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.logo span {
+    color: var(--accent-light);
+    font-size: 1.5rem;
+}
+
+.tagline {
+    font-size: 1rem;
+    opacity: 0.9;
+    color: var(--accent-light);
+}
+
+/* بنر اصلی و دکمه نصب */
+.main-content {
+    padding: 30px 0;
+}
+
+.hero-banner {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.hero-banner h2 {
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.hero-banner p {
+    margin-bottom: 25px;
+    color: #4B5563;
+}
+
+/* دکمه نصب PWA */
+.install-button {
+    background-color: var(--accent-gold);
+    color: var(--white);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    box-shadow: 0 2px 4px rgba(217, 119, 6, 0.3);
+}
+
+.install-button:hover {
+    background-color: #B45309;
+}
+
+/* بخش ترکیبات و کارت‌ها */
+.ingredients-section h3 {
+    text-align: center;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+@media (min-width: 600px) {
+    .cards-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--accent-gold);
+}
+
+.card h4 {
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #6B7280;
+}
+
+/* فوتر */
+.footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #9CA3AF;
+    font-size: 0.85rem;
+    border-top: 1px solid #E5E7EB;
+    margin-top: 30px;
+}
