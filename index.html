@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#064E3B">
+
+    <meta name="description"
+          content="بارین؛ غلات‌بار سالم و انرژی‌زا، همراه لحظه‌های پرانرژی شما">
+
+    <title>برند بارین | غلات‌بار طبیعی و انرژی‌زا</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="manifest" href="./manifest.json">
+
+    <link rel="icon"
+          type="image/png"
+          href="./icons/icon-192x192.png">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="logo">
+            <h1>بارین</h1>
+            <span>BARIN</span>
+        </div>
+
+        <nav>
+            <a href="#home">خانه</a>
+            <a href="#about">درباره بارین</a>
+            <a href="#ingredients">ترکیبات</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Main Section -->
+    <main>
+
+        <section id="home" class="hero">
+
+            <div class="hero-content">
+
+                <h2>
+                    بارین؛ همراه لحظه‌های پرانرژی
+                </h2>
+
+                <p>
+                    یک میان‌وعده خوش‌طعم و مغذی
+                    برای لحظه‌های پرتحرک زندگی
+                </p>
+
+                <a href="#about" class="main-button">
+                    آشنایی با بارین
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- About -->
+        <section id="about" class="about">
+
+            <h2>درباره بارین</h2>
+
+            <p>
+                بارین، غلات‌باری با ترکیبی از جو دوسر پرک،
+                گردو، زردآلوی خشک و دانه آفتابگردان است.
+
+                محصولی برای افرادی که به دنبال یک
+                میان‌وعده خوش‌طعم و مناسب سبک زندگی
+                پرتحرک هستند.
+            </p>
+
+        </section>
+
+
+        <!-- Ingredients -->
+        <section id="ingredients" class="ingredients">
+
+            <h2>ترکیبات اصلی بارین</h2>
+
+            <div class="ingredient-list">
+
+                <div class="ingredient-card">
+                    <h3>جو دوسر پرک</h3>
+                    <p>پایه اصلی غلات‌بار بارین</p>
+                </div>
+
+                <div class="ingredient-card">
+                    <h3>گردو</h3>
+                    <p>منبعی از چربی‌های مفید</p>
+                </div>
+
+                <div class="ingredient-card">
+                    <h3>زردآلوی خشک</h3>
+                    <p>طعم طبیعی و شیرین</p>
+                </div>
+
+                <div class="ingredient-card">
+                    <h3>دانه آفتابگردان</h3>
+                    <p>بافت و ارزش غذایی بیشتر</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Install App -->
+        <section class="install-section">
+
+            <h2>بارین را همراه خود داشته باشید</h2>
+
+            <p>
+                وب‌اپلیکیشن بارین را روی گوشی خود نصب کنید.
+            </p>
+
+            <button id="install-btn" hidden>
+                نصب اپلیکیشن بارین
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <h2>BARIN | بارین</h2>
+
+        <p>
+            بارین؛ همراه لحظه‌های پرانرژی
+        </p>
+
+        <p>
+            © تمامی حقوق متعلق به برند بارین است.
+        </p>
+
+    </footer>
+
+
+    <!-- PWA Installation and Service Worker -->
+
+    <script>
+
+        let deferredPrompt;
+
+        const installButton =
+            document.getElementById("install-btn");
+
+
+        // Detect installation prompt
+
+        window.addEventListener(
+            "beforeinstallprompt",
+            (event) => {
+
+                event.preventDefault();
+
+                deferredPrompt = event;
+
+                installButton.hidden = false;
+
+            }
+        );
+
+
+        // Install application
+
+        installButton.addEventListener(
+            "click",
+            async () => {
+
+                if (!deferredPrompt) {
+                    return;
+                }
+
+                deferredPrompt.prompt();
+
+                await deferredPrompt.userChoice;
+
+                deferredPrompt = null;
+
+                installButton.hidden = true;
+
+            }
+        );
+
+
+        // Detect successful installation
+
+        window.addEventListener(
+            "appinstalled",
+            () => {
+
+                installButton.hidden = true;
+
+                deferredPrompt = null;
+
+                console.log("BARIN installed successfully");
+
+            }
+        );
+
+
+        // Register Service Worker
+
+        if ("serviceWorker" in navigator) {
+
+            window.addEventListener("load", async () => {
+
+                try {
+
+                    const registration =
+                        await navigator.serviceWorker.register(
+                            "./sw.js"
+                        );
+
+                    console.log(
+                        "BARIN Service Worker registered:",
+                        registration.scope
+                    );
+
+                } catch (error) {
+
+                    console.error(
+                        "Service Worker registration failed:",
+                        error
+                    );
+
+                }
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>
